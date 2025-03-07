@@ -72,7 +72,10 @@ flowchart TD
     S --> T{Window Closed or q pressed?}
     T -- Yes --> U[Release Resources & Exit]
     T -- No --> C
+```mermaid
+... (diagram code)
 💻 Installation
+This should resolve the lexical error.
 Clone the Repository:
 
 git clone https://github.com/yourusername/virtual-mouse.git
