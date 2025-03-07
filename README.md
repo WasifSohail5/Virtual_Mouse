@@ -69,7 +69,7 @@ flowchart TD
     O -- Thumb-Middle Pinch --> Q[Right Click]
     P & Q --> R[Update Debug Info on Frame]
     R --> S[Display Frame]
-    S --> T{Window Closed or "q" pressed?}
+    S --> T{Window Closed or q pressed?}
     T -- Yes --> U[Release Resources & Exit]
     T -- No --> C
 💻 Installation
