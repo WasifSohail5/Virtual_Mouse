@@ -1,129 +1,87 @@
-# Virtual Mouse with Hand Gestures 🚀
+# Virtual Mouse
 
-Welcome to **Virtual Mouse with Hand Gestures** – an innovative, touch-free system that transforms your hand movements into seamless mouse control! This project leverages **MediaPipe** for real-time hand tracking, **OpenCV** for video processing, and **PyAutoGUI** for controlling your computer’s mouse. Enjoy a futuristic way to interact with your computer without any physical device!
+[![Virtual Mouse Banner](https://via.placeholder.com/1200x300?text=Virtual+Mouse)](https://github.com/yourusername/virtual-mouse)
 
----
+A Python-based virtual mouse that lets you control your computer's cursor using hand gestures captured via your webcam. This project leverages advanced computer vision and gesture recognition techniques to offer a touchless, intuitive interface.
 
-## 🌟 Project Overview
+## Overview
 
-Imagine controlling your computer simply by moving your hand in front of a webcam. This project provides:
+Virtual Mouse uses [Mediapipe](https://google.github.io/mediapipe/), [OpenCV](https://opencv.org/), and [PyAutoGUI](https://pyautogui.readthedocs.io/) for real-time hand tracking and mouse control. The system detects hand landmarks, interprets gestures, and translates them into mouse actions.
 
-- **Smooth Pointer Movement:**  
-  The mouse pointer follows your index finger with adjustable smoothing for responsive yet stable motion.
-  
-- **Click Gestures:**  
-  - **Left Click:** Performed by pinching your thumb and index finger together.  
-  - **Right Click:** Performed by pinching your thumb and middle finger together.  
-  - **Double Left Click:** Two consecutive left-click gestures within a specified time trigger a double click.
-
-- **Scroll Functionality:**  
-  When you align the bases of your four fingers (landmarks 5, 9, 13, and 17) and move them vertically:
-  - **Scroll Up:** Hand moving upward scrolls up.
-  - **Scroll Down:** Hand moving downward scrolls down.
-  - Scroll sensitivity is enhanced for a faster response.
-
-- **Customizable Gestures & Sensitivity:**  
-  Fine-tune pointer sensitivity, click thresholds, and scroll responsiveness to perfectly match your style.
-
----
-
-## 🔍 Key Features
-
-- **Real-Time Hand Tracking:**  
-  Uses MediaPipe to detect 21 hand landmarks for precise gesture recognition.
-  
-- **Dynamic Gesture Recognition:**  
-  - **Smooth Pointer Control:** With adjustable smoothing for natural movement.
-  - **Multi-Click Gestures:** Supports left, right, and double left click actions.
-  - **High-Sensitivity Scrolling:** Activated by aligning specific finger base landmarks and moving vertically.
-
-- **Interactive Debug Interface:**  
-  A resizable window displays live video feed, gesture debug info, and real-time feedback on actions.
-
-- **User-Friendly & Adaptable:**  
-  Easy to set up, configure, and extend with additional gestures.
-
----
-
-## 🔄 Flow Diagram
-
-Below is a flow diagram that illustrates the core process of the project:
+### How It Works
 
 ```mermaid
 flowchart TD
-    A[Start Program] --> B[Initialize Webcam & Modules]
-    B --> C[Capture & Flip Frame]
-    C --> D[Process Frame with MediaPipe]
-    D --> E{Hand Landmarks Detected?}
-    E -- Yes --> F[Draw Landmarks on Frame]
-    F --> G[Extract Key Landmarks]
-    G --> H[Determine Gesture Mode]
-    H -- Scroll Mode --> I[Compute Average Y of Finger Bases]
-    I --> J[Calculate Vertical Difference]
-    J --> K[Execute Scroll Up/Down]
-    H -- Normal Mode --> L[Map Index Finger to Screen Coordinates]
-    L --> M[Apply Smoothing Filter]
-    M --> N[Move Mouse Pointer]
-    N --> O[Detect Click Gestures]
-    O -- Thumb-Index Pinch --> P[Left Click / Double Left Click]
-    O -- Thumb-Middle Pinch --> Q[Right Click]
-    P & Q --> R[Update Debug Info on Frame]
-    R --> S[Display Frame]
-    S --> T{Window Closed or q pressed?}
-    T -- Yes --> U[Release Resources & Exit]
-    T -- No --> C
-💻 Installation
+    A[Webcam Input] --> B[Mediapipe Hand Tracking]
+    B --> C{Gesture Detection}
+    C -->|Index & Thumb Gesture| D[Left Click / Double Click]
+    C -->|Middle & Thumb Gesture| E[Right Click]
+    C -->|Fingers Aligned| F[Scrolling]
+    D & E & F --> G[PyAutoGUI Interface]
+    G --> H[OS Mouse Control]
+
+Features
+Real-Time Hand Tracking: Uses Mediapipe to accurately detect and track hand landmarks.
+Gesture-Based Actions:
+Left Click & Double Click: Triggered by pinching the index finger and thumb.
+Right Click: Triggered by pinching the middle finger and thumb.
+Scrolling: Activated when fingers are aligned horizontally and moved vertically.
+Smooth Cursor Movement: Implements a smoothing algorithm for fluid and responsive cursor control.
+Customizable Parameters: Easily modify thresholds and sensitivity settings in the code.
+Architecture
+The project is organized into four main modules:
+
+Input Module: Captures live video feed from the webcam.
+Processing Module: Converts video frames, detects hand landmarks, and processes gestures.
+Gesture Recognition Module: Analyzes hand positions to decide the corresponding mouse action.
+Output Module: Uses PyAutoGUI to send commands to the operating system for mouse control.
+mermaid
+Copy
+Edit
+graph LR
+    A[Webcam Capture] --> B[Frame Preprocessing]
+    B --> C[Hand Landmark Detection]
+    C --> D[Gesture Analysis]
+    D --> E[Mouse Action Mapping]
+    E --> F[OS Control via PyAutoGUI]
+
+Requirements
+Python 3.x
+OpenCV
+Mediapipe
+PyAutoGUI
+NumPy
+Installation
 Clone the Repository:
 
 git clone https://github.com/yourusername/virtual-mouse.git
 cd virtual-mouse
+Set Up a Virtual Environment (Optional but Recommended):
+
+python -m venv venv
+source venv/bin/activate   # For Windows use: venv\Scripts\activate
 Install Dependencies:
 
-Ensure you have Python 3.x installed, then run:
-
 pip install opencv-python mediapipe pyautogui numpy
-Run the Project:
+Usage
+Ensure Your Webcam is Connected: Make sure your computer’s webcam is working.
 
-python virtual_mouse.py
-🕹️ How to Use
-Pointer Movement:
-Move your hand in front of the webcam; your index finger controls the pointer with smooth, responsive motion.
+Run the Script:
 
-Click Gestures:
+python Virtual\ Mouse.py
+Control the Mouse:
+Left Click / Double Click: Pinch your index finger and thumb together.
+Right Click: Pinch your middle finger and thumb together.
+Scrolling: Align your fingers (index, middle, ring, and pinky) horizontally and move them vertically.
+Exit the Application: Press q in the display window to quit.
 
-Left Click: Pinch your thumb and index finger together.
-Right Click: Pinch your thumb and middle finger together.
-Double Left Click: Perform two left-click pinches within 0.5 seconds.
-Scroll Functionality:
+Contributing
+Contributions are welcome! Please open an issue or submit a pull request if you have suggestions or improvements.
 
-Activate Scroll Mode:
-Align the bases of your index, middle, ring, and pinky fingers (landmarks 5, 9, 13, 17) so they are nearly in a vertical line.
-Scroll:
-Move your hand vertically:
-Upward movement: Scrolls up.
-Downward movement: Scrolls down.
-The scroll sensitivity is set high for quick and efficient scrolling.
-🎨 Customization
-Pointer Sensitivity:
-Adjust the smoothing factor to make the mouse pointer more or less responsive.
+License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-Click Settings:
-Modify CLICK_THRESHOLD and click_cooldown to fine-tune pinch gesture detection.
-
-Scroll Settings:
-Tweak threshold_x_std, scroll_threshold, and scroll_factor to optimize scrolling speed and sensitivity.
-
-🤝 Contributing
-Contributions are welcome! If you have ideas, bug fixes, or improvements, please:
-
-Fork the repository.
-Create a new branch for your feature or fix.
-Submit a pull request with detailed descriptions of your changes.
-📞 Connect with Me
-For questions, feedback, or professional networking, please connect with me on LinkedIn.
-
-📜 License
-This project is licensed under the MIT License.
-
-Enjoy exploring this futuristic way to control your computer, and happy coding! 🚀
-
+Acknowledgements
+Mediapipe: For providing advanced hand tracking.
+OpenCV: For essential computer vision capabilities.
+PyAutoGUI: For simplifying mouse automation.
