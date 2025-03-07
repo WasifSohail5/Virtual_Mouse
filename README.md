@@ -72,10 +72,7 @@ flowchart TD
     S --> T{Window Closed or q pressed?}
     T -- Yes --> U[Release Resources & Exit]
     T -- No --> C
-```mermaid
-... (diagram code)
 💻 Installation
-This should resolve the lexical error.
 Clone the Repository:
 
 git clone https://github.com/yourusername/virtual-mouse.git
@@ -100,7 +97,7 @@ Double Left Click: Perform two left-click pinches within 0.5 seconds.
 Scroll Functionality:
 
 Activate Scroll Mode:
-Align the bases of your index, middle, ring, and pinky fingers (landmarks 5, 9, 13, and 17) so they are nearly in a vertical line.
+Align the bases of your index, middle, ring, and pinky fingers (landmarks 5, 9, 13, 17) so they are nearly in a vertical line.
 Scroll:
 Move your hand vertically:
 Upward movement: Scrolls up.
@@ -129,11 +126,4 @@ For questions, feedback, or professional networking, please connect with me on L
 This project is licensed under the MIT License.
 
 Enjoy exploring this futuristic way to control your computer, and happy coding! 🚀
-
-This README includes all essential details with a detailed description, an attractive layout with icons, a corrected flow diagram using Mermaid, and your LinkedIn URL for networking. Feel free to adjust any sections as needed!
-
-
-
-
-
 
