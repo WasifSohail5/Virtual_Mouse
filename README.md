@@ -81,7 +81,7 @@ flowchart TD
     E -- Yes --> F[Draw Landmarks on Frame]
     F --> G[Extract Key Landmarks]
     G --> H[Determine Gesture Mode]
-    H -- Scroll Mode --> I[Compute Average Y of Landmarks (5,9,13,17)]
+    H -- Scroll Mode --> I[Compute Average Y of Finger Bases]
     I --> J[Calculate Vertical Difference]
     J --> K[Execute Scroll (Up/Down)]
     H -- Normal Mode --> L[Map Index Finger to Screen Coordinates]
